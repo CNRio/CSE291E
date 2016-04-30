@@ -1,0 +1,12 @@
+FROM ubuntu
+RUN apt-get update && apt-get install -y default-jre default-jdk
+RUN rm -rf rmi
+RUN rm -rf src
+RUN mkdir rmi
+RUN mkdir src
+COPY rmi/ /rmi/
+COPY ServerTest.java .
+RUN javac /rmi/*.java
+RUN jar cvf rmi.jar rmi/*.class
+RUN mv -f rmi.jar /src
+RUN javac -cp /src/rmi.jar ServerTest.java
