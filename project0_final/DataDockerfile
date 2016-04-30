@@ -1,0 +1,3 @@
+FROM ubuntu
+ADD string.txt /data/
+VOLUME /data
